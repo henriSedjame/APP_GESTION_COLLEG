@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	
+	
+	
+	<!-- SCAN DES DAO @REPOSITORY -->
+	<context:component-scan base-package = "com.shj.app.dao"/>
+	
+	 
+	<context:annotation-config />
+	
+	<!-- RECUPERATION DU FICHIER DES PROPRIETES DE LA BASE DE DONNEES-->
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<!--ANNOTATION @TRANSACTIONNAL-->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!--CREATION DU BEAN DATASOURCE-->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	
+			<property name="driverClassName" value="${driver}"/>
+			<property name="url" value="${url}"/>
+			<property name="username" value="${user}"/>
+			<property name="password" value="${password}"/>
+			<property name="initialSize" value="${initialSize}"/> 
+			<property name="minIdle" value="${minIdle}" />
+			<property name="maxTotal" value="${maxTotal}"/>
+			
+	</bean> -->
+	
+	<!-- Pool de connexions Tomcat -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/postgres</value>
+		</property>
+	</bean>
+ 
+	
+	<!--  CREATION DU BEAN ENTITY_MANAGER_FACTORY -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+			
+			<property name="dataSource" ref="dataSource" />
+			<property name="packagesToScan" value="com.shj.app.entities" />
+			<property name="jpaVendorAdapter">
+				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+					<property name="databasePlatform" value="${dialect}" />
+					<property name="showSql" value="true" />
+					<property name="generateDdl" value="true" />
+				</bean>
+			</property>
+			<property name="jpaProperties">
+         		<props>
+            			<prop key="hibernate.dialect">${dialect}</prop>
+            			<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+         		</props>
+      		</property>
+	</bean>
+	
+	<jpa:repositories base-package="com.shj.app.dao" />
+	
+	<!--CREATION DU BEAN TRANSACTION_MANAGER-->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>
+	
+	<!--GESTION DES EXCEPTIONS-->
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+</beans>
+

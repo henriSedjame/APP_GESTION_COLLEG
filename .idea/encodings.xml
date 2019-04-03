@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/shj/app/controllers/ConnexionController.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/shj/app/entities/Eleve.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/shj/app/entities/Matiere.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/shj/app/service/InitService.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/shj/app/test/ClassTest.java" charset="windows-1252" />
+    <file url="file://$USER_HOME$/eclipse-workspace/elasticsearchtest/src/main/resources/application.properties" charset="UTF-8" />
+  </component>
+</project>

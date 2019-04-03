@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- pour PostGreSQL -->
+
+<Context >
+
+	<Resource 
+	name="jdbc/postgres" 
+	auth="Container"
+    type="javax.sql.DataSource" 
+    driverClassName="org.postgresql.Driver"
+    url="jdbc:postgresql://localhost:5432/collegeDB"
+    username="postgres" 
+    password="Hiphop!87" 
+    minIdle="1"
+	maxTotal="10"
+	
+    />
+	
+</Context>
+
+<!--  pour MySQL -->  
+
+<!-- <Context>
+    <Resource
+   	name="jdbc/videotheque"
+   	auth="Container"
+   	type="javax.sql.DataSource"
+   	username="root"
+   	password="admin"
+   	driverClassName="com.mysql.jdbc.Driver"
+   	url="jdbc:mysql://localhost:3306/videotheque"
+    />
+</Context> -->
+
+<!--  pour HSQLDB --> 
+<!--
+<Context>
+    <Resource
+   	name="jdbc/videotheque"
+   	auth="Container"
+   	type="javax.sql.DataSource"
+   	username="SA"
+   	password=""
+   	driverClassName="org.hsqldb.jdbcDriver"
+   	url="jdbc:hsqldb:hsql://localhost/videotheque"
+    />
+</Context>
+-->

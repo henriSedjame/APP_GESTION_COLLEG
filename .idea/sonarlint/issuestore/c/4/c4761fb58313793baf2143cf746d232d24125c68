@@ -1,0 +1,5 @@
+
+hsquid:S1192E"QDefine a constant instead of duplicating this literal "errorIdentifiant" 4 times.(®ì‘
+csquid:S1192T"GDefine a constant instead of duplicating this literal "prenom" 3 times.(ÆÂû ûÿÿÿÿ
+osquid:S3753"XAdd a call to "setComplete()" on the SessionStatus object in a "@RequestMapping" method.(‚»û¹
+\squid:S4684>"@Replace this persistent entity with a simple POJO or DTO object.(èûïÿÿÿÿÿ
